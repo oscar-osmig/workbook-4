@@ -68,10 +68,14 @@ public class Employee {
     }
 
     public void setTotalPay(float totalPay) {
-        this.totalPay = totalPay;
+
+        this.totalPay = ((this.getRegularHours() * this.payRate) + (this.overtimeHours * 1.5f));
     }
 
     public float getRegularHours() {
+        if(this.hoursWorked <= 40){
+            regularHours = getHoursWorked();
+        }
         return regularHours;
     }
 
@@ -80,6 +84,9 @@ public class Employee {
     }
 
     public float getOvertimeHours() {
+        if(this.hoursWorked > 40){
+            overtimeHours = this.hoursWorked - 40;
+        }
         return overtimeHours;
     }
 

@@ -2,7 +2,7 @@ package com.pluralsight;
 
 public class Employee {
     String employeeId, name, department;
-    float payRate, hoursWorked, totalPay, regularHours, overtimeHours;
+    float payRate, hoursWorked;
 
     public Employee(String employeeId, String name, String department, float payRate, float hoursWorked) {
         this.employeeId = employeeId;
@@ -10,17 +10,6 @@ public class Employee {
         this.department = department;
         this.payRate = payRate;
         this.hoursWorked = hoursWorked;
-    }
-
-    public Employee(String employeeId, String name, String department, float payRate, float hoursWorked, float totalPay, float regularHours, float overtimeHours) {
-        this.employeeId = employeeId;
-        this.name = name;
-        this.department = department;
-        this.payRate = payRate;
-        this.hoursWorked = hoursWorked;
-        this.totalPay = totalPay;
-        this.regularHours = regularHours;
-        this.overtimeHours = overtimeHours;
     }
 
     public String getEmployeeId() {
@@ -64,33 +53,44 @@ public class Employee {
     }
 
     public float getTotalPay() {
-        return totalPay;
+        return (this.getRegularHours() * this.payRate) + (getOvertimeHours()* 1.5f);
     }
 
-    public void setTotalPay(float totalPay) {
 
-        this.totalPay = ((this.getRegularHours() * this.payRate) + (this.overtimeHours * 1.5f));
-    }
-
-    public float getRegularHours() {
-        if(this.hoursWorked <= 40){
-            regularHours = getHoursWorked();
+    public float getRegularHours()
+    {
+        if (hoursWorked <= 40){
+            return hoursWorked;
         }
-        return regularHours;
+        return 40;
     }
 
-    public void setRegularHours(float regularHours) {
-        this.regularHours = regularHours;
-    }
 
     public float getOvertimeHours() {
         if(this.hoursWorked > 40){
-            overtimeHours = this.hoursWorked - 40;
+            return this.hoursWorked - 40;
         }
-        return overtimeHours;
+        return 0;
     }
 
-    public void setOvertimeHours(float overtimeHours) {
-        this.overtimeHours = overtimeHours;
+
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "employeeId='" + employeeId + '\'' +
+                ", name='" + name + '\'' +
+                ", department='" + department + '\'' +
+                ", payRate=" + payRate +
+                ", hoursWorked=" + hoursWorked +
+                ", totalPay=" + getTotalPay() +
+                ", regularHours=" + getRegularHours()+
+                ", overtimeHours=" + getOvertimeHours() +
+                '}';
     }
+
+    public double punchTimeCard(double in, double out) {
+        return out - in;
+    }
+
 }

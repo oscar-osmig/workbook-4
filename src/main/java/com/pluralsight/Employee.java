@@ -1,5 +1,8 @@
 package com.pluralsight;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Employee {
     String employeeId, name, department;
     float payRate, hoursWorked;
@@ -90,7 +93,15 @@ public class Employee {
     }
 
     public double punchTimeCard(double in, double out) {
-        return out - in;
+        double lunch;
+        if (this.hoursWorked > 6)
+        {
+            lunch = 0.5;
+        }else {lunch = 0;}
+
+        return (out - in) + this.hoursWorked - lunch;
     }
+
+
 
 }

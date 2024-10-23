@@ -67,16 +67,16 @@ public class Room {
     }
 
     public void checkIn(){
-        isDirty = true;
-        isOccupied = true;
+        this.isDirty = true;
+        this.isOccupied = true;
 
     }
     public void checkOut(){
-        cleanRoom();
+        this.isDirty = false;
     }
 
     public void cleanRoom(){
-        isDirty = false;
+        this.isDirty = false;
     }
 
 }

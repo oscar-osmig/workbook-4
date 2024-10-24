@@ -14,6 +14,10 @@ public class Room {
         this.isDirty = isDirty;
     }
 
+    public Room() {
+
+    }
+
     public int getNumberOfBeds() {
         return numberOfBeds;
     }
@@ -66,9 +70,14 @@ public class Room {
                 '}';
     }
 
-    public void checkIn(){
-        this.isDirty = true;
-        this.isOccupied = true;
+    public boolean checkIn(){
+        if(this.isDirty == false && this.isOccupied == false){
+            this.isDirty = true;
+            this.isOccupied = true;
+            return true;
+        }else {
+            return false;
+        }
 
     }
     public void checkOut(){
